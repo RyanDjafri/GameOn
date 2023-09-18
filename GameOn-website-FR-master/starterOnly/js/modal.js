@@ -5,6 +5,7 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeBtn = document.querySelector(".close");
 const submitBtn = document.querySelector(".btn-submit");
+const bground = document.reserve;
 
 function editNav() {
   var x = document.getElementById("myTopnav");
@@ -124,7 +125,7 @@ function checkForm(e) {
   }
 
   if (isValid) {
-    console.log("good");
+    displaySuccessMessage();
   }
 }
 
@@ -132,3 +133,27 @@ submitBtn.addEventListener("click", (e) => {
   e.preventDefault();
   checkForm(e);
 });
+
+const displaySuccessMessage = () => {
+  const successContainer = document.querySelector(".success-container");
+  const btnClose = document.querySelector(".btn-close");
+  const modalbg = document.querySelector(".bground");
+  const formData = document.querySelectorAll(".formData");
+  const reserveForm = document.querySelector("form[name='reserve']");
+  successContainer.classList.remove("hidden");
+  document.querySelector(".text-label").style.display = "none";
+  formData.forEach((form) => {
+    form.style.display = "none";
+  });
+  document.querySelector(".btn-submit").style.display = "none";
+  btnClose.addEventListener("click", () => {
+    successContainer.classList.add("hidden");
+    formData.forEach((form) => {
+      form.style.display = "block";
+      form.value = "";
+    });
+    modalbg.style.display = "none";
+    document.querySelector(".btn-submit").style.display = "block";
+    reserveForm.reset();
+  });
+};
