@@ -8,7 +8,7 @@ const submitBtn = document.querySelector(".btn-submit");
 const bground = document.reserve;
 
 function editNav() {
-  var x = document.getElementById("myTopnav");
+  const x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
     x.className += " responsive";
   } else {
@@ -75,28 +75,69 @@ function checkForm(e) {
 
   resetErrorStyles();
 
-  if (firstName.value.trim() === "" || firstName.value.length < 2) {
-    displayError("first", "Veuillez entrer un prénom valide.");
+  if (
+    firstName.value.trim().length < 2 ||
+    !/^[A-Za-z]+$/.test(firstName.value.trim())
+  ) {
+    displayError(
+      "first",
+      "Veuillez entrer un prénom valide avec au moins 2 caractères alphabétiques."
+    );
     isValid = false;
   }
 
-  if (lastName.value.trim() === "" || lastName.value.length < 2) {
-    displayError("last", "Veuillez entrer un nom valide.");
+  if (
+    lastName.value.trim().length < 2 ||
+    !/^[A-Za-z]+$/.test(lastName.value.trim())
+  ) {
+    displayError(
+      "last",
+      "Veuillez entrer un nom valide avec au moins 2 caractères alphabétiques."
+    );
     isValid = false;
   }
 
   const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-  if (!emailPattern.test(email.value.trim())) {
-    displayError("email", "Veuillez entrer un email valide.");
+  if (
+    !emailPattern.test(email.value.trim()) ||
+    email.value.trim().split("@").length !== 2
+  ) {
+    displayError("email", "Veuillez entrer une adresse email valide.");
     isValid = false;
   }
-
   if (birthdate.value === "") {
     displayError("birthdate", "Veuillez sélectionner votre date de naissance.");
     isValid = false;
+  } else {
+    const birthdateValue = new Date(birthdate.value);
+    const currentDate = new Date();
+
+    // Calculate the user's age
+    const userAge = currentDate.getFullYear() - birthdateValue.getFullYear();
+    const birthdateMonth = birthdateValue.getMonth();
+    const currentMonth = currentDate.getMonth();
+    const birthdateDay = birthdateValue.getDate();
+    const currentDay = currentDate.getDate();
+
+    if (
+      userAge < 18 ||
+      (userAge === 18 &&
+        (birthdateMonth > currentMonth ||
+          (birthdateMonth === currentMonth && birthdateDay > currentDay)))
+    ) {
+      displayError(
+        "birthdate",
+        "Vous devez avoir au moins 18 ans pour soumettre le formulaire."
+      );
+      isValid = false;
+    }
   }
 
-  if (isNaN(quantity.value.trim()) || quantity.value.trim() === "") {
+  if (
+    isNaN(quantity.value.trim()) ||
+    quantity.value.trim() === "" ||
+    parseFloat(quantity.value.trim()) < 0
+  ) {
     displayError(
       "quantity",
       "Veuillez entrer un nombre valide pour la quantité."
