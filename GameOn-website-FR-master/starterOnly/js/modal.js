@@ -15,20 +15,22 @@ function editNav() {
   }
 }
 
-// J'ajoute un event listener sur tous les boutons en utilisant un forEach qui ajoutera sur chaque élément d'un array l'event click
+// J'ajoute un event listener sur mon button qui va ouvrir mon modal
 modalBtn.addEventListener("click", () => {
   launchModal();
 });
 
-
+// La function permettant d'ouvrir le modal et changer son display en block
 function launchModal() {
   modalbg.style.display = "block";
 }
 
+// La function permettant de fermer le modal et changer son display en none
 closeBtn.addEventListener("click", () => {
   modalbg.style.display = "none";
 });
 
+// function permettant d'afficher l'erreur voulu et d'ajouter a l'input le data-error
 function displayError(inputId, errorMessage) {
   const inputElement = document.getElementById(inputId);
   inputElement.parentElement.setAttribute("data-error", errorMessage);
@@ -36,7 +38,7 @@ function displayError(inputId, errorMessage) {
   inputElement.classList.add("error-input");
 }
 
-// Function to remove the error message and styles for a specific input
+// fonction qui va enlever l'erreur lorsque les conditions de l'input seront remplis
 function removeError(inputId) {
   const inputElement = document.getElementById(inputId);
   inputElement.parentElement.removeAttribute("data-error");
@@ -44,7 +46,7 @@ function removeError(inputId) {
   inputElement.classList.remove("error-input");
 }
 
-// Function to reset error messages and styles for all inputs
+// reset le style des erreurs, enlever l'attribut et le status visible de l'erreur
 function resetErrorStyles() {
   const errorElements = document.querySelectorAll("[data-error]");
   errorElements.forEach((element) => {
@@ -58,6 +60,7 @@ function resetErrorStyles() {
   });
 }
 
+// fonction verifiant tous les parametres des inputs
 function checkForm(e) {
   e.preventDefault();
 
@@ -173,6 +176,7 @@ submitBtn.addEventListener("click", (e) => {
   checkForm(e);
 });
 
+// fonction affichant le message de succès si tous les paramètres du formulaire sont remplis
 const displaySuccessMessage = () => {
   const successContainer = document.querySelector(".success-container");
   const btnClose = document.querySelector(".btn-close");
