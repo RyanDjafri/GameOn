@@ -6,7 +6,6 @@ const formData = document.querySelectorAll(".formData");
 const closeBtn = document.querySelector(".close");
 const submitBtn = document.querySelector(".btn-submit");
 const bground = document.reserve;
-
 function editNav() {
   const x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
