@@ -1,7 +1,7 @@
 // J'importe tous les éléments du DOM que j'utiliserai dans mon code, les boutons, les formulaires, etc...
 
 const modalbg = document.querySelector(".bground");
-const modalBtn = document.querySelectorAll(".modal-btn");
+const modalBtn = document.querySelector(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeBtn = document.querySelector(".close");
 const submitBtn = document.querySelector(".btn-submit");
@@ -16,11 +16,10 @@ function editNav() {
 }
 
 // J'ajoute un event listener sur tous les boutons en utilisant un forEach qui ajoutera sur chaque élément d'un array l'event click
-modalBtn.forEach((btn) =>
-  btn.addEventListener("click", (e) => {
-    launchModal();
-  })
-);
+modalBtn.addEventListener("click", () => {
+  launchModal();
+});
+
 
 function launchModal() {
   modalbg.style.display = "block";
