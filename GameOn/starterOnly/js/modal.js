@@ -7,9 +7,9 @@ const closeBtn = document.querySelector(".close");
 const submitBtn = document.querySelector(".btn-submit");
 
 function editNav() {
-  const x = document.getElementById("myTopnav");
+  var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
-    x.className += "responsive";
+    x.className += " responsive";
   } else {
     x.className = "topnav";
   }
