@@ -5,6 +5,7 @@ const modalBtn = document.querySelector(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeBtn = document.querySelector(".close");
 const submitBtn = document.querySelector(".btn-submit");
+const burger = document.querySelector(".burger");
 
 function editNav() {
   var x = document.getElementById("myTopnav");
@@ -14,6 +15,10 @@ function editNav() {
     x.className = "topnav";
   }
 }
+
+burger.addEventListener("click", () => {
+  editNav();
+});
 
 // J'ajoute un event listener sur mon button qui va ouvrir mon modal
 modalBtn.addEventListener("click", () => {
@@ -63,7 +68,6 @@ function resetErrorStyles() {
 // fonction verifiant tous les parametres des inputs
 function checkForm(e) {
   e.preventDefault();
-
   const firstName = document.getElementById("first");
   const lastName = document.getElementById("last");
   const email = document.getElementById("email");
