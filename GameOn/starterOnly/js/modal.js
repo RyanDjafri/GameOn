@@ -112,7 +112,6 @@ function checkForm(e) {
   } else {
     const birthdateValue = new Date(birthdate.value);
     const currentDate = new Date();
-
     const userAge = currentDate.getFullYear() - birthdateValue.getFullYear();
     const birthdateMonth = birthdateValue.getMonth();
     const currentMonth = currentDate.getMonth();
